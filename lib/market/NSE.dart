@@ -220,8 +220,8 @@ class _NSEState extends State<NSE> {
                         ),
                         Row(
                           children: [
-                            Text(currentSign+D1.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
-                            Text('('+Dchange.toString()+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
+                            Text(currentSign+D1.toString().substring(0,D1.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
+                            Text('('+Dchange.toString().substring(0,Dchange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
                           ],
                         ),
                         Row(
