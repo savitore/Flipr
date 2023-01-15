@@ -39,6 +39,7 @@ dependencies:
   syncfusion_flutter_charts: ^18.4.49
   http: ^0.13.5
   fl_chart: ^0.12.0
+  fluttertoast: ^8.1.2
 
 
 dev_dependencies:

@@ -37,21 +37,21 @@ class _RegisterState extends State<Register> {
                 SizedBox(height: 30,),
                 TextFormField(
                   validator: (val)=> val!.isEmpty? 'Enter your name':null,
-                    keyboardType: TextInputType.name,
-                    onChanged: (value){
+                  keyboardType: TextInputType.name,
+                  onChanged: (value){
                     name=value;
-                    },
-                    decoration: InputDecoration(
+                  },
+                  decoration: InputDecoration(
                       hintStyle: TextStyle(color: Colors.grey[300]),
                       filled: true,
-                    fillColor: Colors.blue[300],
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    hintText: "Enter Your Name"
+                      fillColor: Colors.blue[300],
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      hintText: "Enter Your Name"
+                  ),
                 ),
-              ),
                 SizedBox(height: 20,),
                 TextFormField(
                   validator: (val)=> val!.isEmpty? 'Enter your email':null,
@@ -125,7 +125,7 @@ class _RegisterState extends State<Register> {
                             ),
                           );
                           showDialog(
-                            barrierDismissible: false,
+                              barrierDismissible: false,
                               context: context,
                               builder: (BuildContext context){
                                 return alert;
