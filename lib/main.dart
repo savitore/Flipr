@@ -1,5 +1,5 @@
+// @dart=2.9
 import 'package:flipr/authentication/login.dart';
-import 'package:flipr/market/NSE.dart';
 import 'package:flutter/material.dart';
 
 void main() {
