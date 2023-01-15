@@ -207,13 +207,13 @@ class _RelianceState extends State<Reliance> {
                         ),
                         Row(
                           children: [
-                            Text(current.toString(),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
+                            Text(current.toString().substring(0,current.toString().indexOf('.')+3),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
                           ],
                         ),
                         Row(
                           children: [
-                            Text(D1.toString().substring(0,D1.toString().indexOf('.')+2),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
-                            Text('('+Dchange.toString().substring(0,Dchange.toString().indexOf('.')+2)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
+                            Text(D1.toString().substring(0,D1.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
+                            Text('('+Dchange.toString().substring(0,Dchange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
                           ],
                         ),
                         Row(
@@ -230,9 +230,9 @@ class _RelianceState extends State<Reliance> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                            SizedBox(width: 160,),
-                            Text(high.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(low.toString().substring(0,low.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            SizedBox(width: 105),
+                            Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -259,9 +259,9 @@ class _RelianceState extends State<Reliance> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                            SizedBox(width: 155,),
-                            Text(high52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(low52.toString().substring(0,low52.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            SizedBox(width: 110,),
+                            Text(high52.toString().substring(0,high52.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -339,9 +339,9 @@ class _RelianceState extends State<Reliance> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Open',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(open.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(open.toString().substring(0,open.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('Day Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(low.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(low.toString().substring(0,low.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(

@@ -207,7 +207,7 @@ class _EichermotState extends State<Eichermot> {
                         ),
                         Row(
                           children: [
-                            Text(current.toString(),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
+                            Text(current.toString().substring(0,current.toString().indexOf('.')+3),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
                           ],
                         ),
                         Row(
@@ -230,9 +230,9 @@ class _EichermotState extends State<Eichermot> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                            SizedBox(width: 160,),
-                            Text(high.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(low.toString().substring(0,low.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            SizedBox(width: 105,),
+                            Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -259,9 +259,9 @@ class _EichermotState extends State<Eichermot> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                            SizedBox(width: 155,),
-                            Text(high52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(low52.toString().substring(0,low52.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            SizedBox(width: 100,),
+                            Text(high52.toString().substring(0,high52.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -341,7 +341,7 @@ class _EichermotState extends State<Eichermot> {
                                 Text('Open',style: TextStyle(fontSize: 15,color: Colors.grey)),
                                 Text(open.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('Day Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(low.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(low.toString().substring(0,low.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(

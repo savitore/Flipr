@@ -328,7 +328,7 @@ class _NSEState extends State<NSE> {
                                 },
                               ).toList(),
                             ),
-                            Text(returns.toString()+'('+returnsChange.toString()+'%)',style: TextStyle(fontSize: 15,color: returnsColor),)
+                            Text(returns.toString()+'('+returnsChange.toString().substring(0,returnsChange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,color: returnsColor),)
                           ],
                         ),
                         Row(
