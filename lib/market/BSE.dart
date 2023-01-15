@@ -91,12 +91,12 @@ class _BSEState extends State<BSE> {
           print(i);
           print(value.low);
           print(value.high);
-          // if(low52>data[i]['Low']){
-          //   low52=data[i]['Low'];
-          // }
-          // if(high52<data[i]['High']){
-          //   high52=data[i]['High'];
-          // }
+          if(low52>data[i]['Low']){
+            low52=data[i]['Low'];
+          }
+          if(high52<data[i]['High']){
+            high52=data[i]['High'];
+          }
         }
         current=data[1233]['Close'];
         if(current>0)
@@ -114,7 +114,7 @@ class _BSEState extends State<BSE> {
         previousClose=data[1232]['Close'];
         D1=data[1233]['Close']-data[1232]['Close'];
         Dchange=(D1/current)*100;
-        M1=data[1233]['Close']-data[1203]['Close'];
+        M1=data[1233]['Close']-data[1202]['Close'];
         Mchange=(M1/current)*100;
         returns=M1;
         returnsChange=Mchange;
