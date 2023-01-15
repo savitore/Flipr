@@ -42,8 +42,8 @@ class _NSEState extends State<NSE> {
   double open=0.0;
   double previousClose=0.0;
   double current=0.0;
-  double low52=0.0;
-  double high52=0.0;
+  dynamic low52;
+  dynamic high52;
   double D1=0.0;
   double Dchange =0.0;
   double M1=0.0;
@@ -54,7 +54,6 @@ class _NSEState extends State<NSE> {
   double Y1change =0.0;
   double returns=0.0;
   double returnsChange =0.0;
-  String currentSign="";
   var flag=0;
   late TooltipBehavior _tooltipBehavior;
   late ZoomPanBehavior _zoomPanBehavior;
@@ -86,30 +85,28 @@ class _NSEState extends State<NSE> {
       var data= jsonDecode(response.body);
       setState(() {
         low52=data[0]['Low'];
+        high52=0.0;
         for( var i=0; i<1200;i++){
           var value=ChartData(date: DateFormat("dd-MM-yyyy").parse(data[i]['Date']), open: data[i]['Open'], high: data[i]['High'], low: data[i]['Low'], close: data[i]['Close']);
           chartData.add(value);
           print(i);
-          // if(low52>data[i]['Low']){
-          //   low52=data[i]['Low'];
-          // }
-          // if(high52<data[i]['High']){
-          //   high52=data[i]['High'];
-          // }
+          print(value.low);
+          print(value.high);
+          //Data same from 734 to 737 so no change will occur so better to exclude i=736 which is null
+          if(i!=736){
+            if(low52>value.low){
+              low52=value.low;
+            }
+            if(high52<value.high){
+              high52=value.high;
+            }
+          }
+          //
         }
         current=data[1234]['Close'];
         if(current==data[1234]['Close']){
           flag=1;
         }
-        if(current>0)
-          {
-            currentSign="+";
-            currentColor=Colors.green;
-          }
-        else {
-            currentSign="-";
-            currentColor=Colors.red;
-          }
         low=data[1234]['Low'];
         high=data[1234]['High'];
         open=data[1234]['Open'];
@@ -120,10 +117,17 @@ class _NSEState extends State<NSE> {
         Mchange=(M1/current)*100;
         returns=M1;
         returnsChange=Mchange;
+        if(D1>0)
+        {
+          currentColor=Colors.green;
+        }
+        else {
+          currentColor=Colors.red;
+        }
         if(returns>0)
-          {
-            returnsColor=Colors.green;
-          }
+        {
+          returnsColor=Colors.green;
+        }
         Y5=data[1234]['Close']-data[0]['Close'];
         Y5change=(Y5/current)*100;
         Y1=data[1234]['Close']-data[870]['Close'];
@@ -213,8 +217,8 @@ class _NSEState extends State<NSE> {
                         ),
                         Row(
                           children: [
-                            Text(currentSign+D1.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
-                            Text('('+Dchange.toString()+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
+                            Text(D1.toString().substring(0,D1.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
+                            Text('('+Dchange.toString().substring(0,Dchange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
                           ],
                         ),
                         Row(
@@ -268,15 +272,15 @@ class _NSEState extends State<NSE> {
                         Row(
                           children: [
                             Text('L',style: TextStyle(color: Colors.red,fontSize: 15),),
-                            // Slider(
-                            //   value: current,
-                            //   onChanged: null,
-                            //   min: low52,
-                            //   max: high52,
-                            //   activeColor: Colors.black,
-                            //   inactiveColor: Colors.black,
-                            //   thumbColor: Colors.black,
-                            // ),
+                            Slider(
+                              value: current,
+                              onChanged: null,
+                              min: low52,
+                              max: high52,
+                              activeColor: Colors.black,
+                              inactiveColor: Colors.black,
+                              thumbColor: Colors.black,
+                            ),
                             Text('H',style: TextStyle(color: Colors.green,fontSize: 15),)
                           ],
                         ),
@@ -409,7 +413,7 @@ class _NSEState extends State<NSE> {
         backgroundColor: Colors.white,
         body: Center(
           child:
-            CircularProgressIndicator()
+          CircularProgressIndicator()
           ,
         ),
       );

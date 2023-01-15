@@ -37,24 +37,24 @@ class _BSEState extends State<BSE> {
   Color? currentColor = Colors.red;
   String dropdownValueS= 'BSE';
   String dropdownValueR= '1M';
-  double low=0.0;
-  double high=0.0;
-  double open=0.0;
-  double previousClose=0.0;
-  double current=0.0;
-  double low52=0.0;
-  double high52=0.0;
-  double D1=0.0;
-  double Dchange =0.0;
-  double M1=0.0;
-  double Mchange =0.0;
-  double Y5=0.0;
-  double Y5change =0.0;
-  double Y1=0.0;
-  double Y1change =0.0;
-  double returns=0.0;
-  double returnsChange =0.0;
-  String currentSign="";
+  dynamic low=0.0;
+  dynamic high=0.0;
+  dynamic open=0.0;
+  dynamic previousClose=0.0;
+  dynamic current=0.0;
+  dynamic low52=0.0;
+  dynamic high52=0.0;
+  dynamic D1=0.0;
+  dynamic Dchange =0.0;
+  dynamic M1=0.0;
+  dynamic Mchange =0.0;
+  dynamic Y5=0.0;
+  dynamic Y5change =0.0;
+  dynamic Y1=0.0;
+  dynamic Y1change =0.0;
+  dynamic returns=0.0;
+  dynamic returnsChange =0.0;
+  var flag=0;
   late TooltipBehavior _tooltipBehavior;
   late ZoomPanBehavior _zoomPanBehavior;
   late CrosshairBehavior _crosshairBehavior;
@@ -89,40 +89,43 @@ class _BSEState extends State<BSE> {
           var value=ChartData(date: DateFormat("dd-MM-yyyy").parse(data[i]['Date']), open: data[i]['Open'], high: data[i]['High'], low: data[i]['Low'], close: data[i]['Close']);
           chartData.add(value);
           print(i);
-          // if(low52>data[i]['Low']){
-          //   low52=data[i]['Low'];
-          // }
-          // if(high52<data[i]['High']){
-          //   high52=data[i]['High'];
-          // }
+          print(value.low);
+          print(value.high);
+          if(low52>data[i]['Low']){
+            low52=data[i]['Low'];
+          }
+          if(high52<data[i]['High']){
+            high52=data[i]['High'];
+          }
         }
-        current=data[1234]['Close'];
-        if(current>0)
-        {
-          currentSign="+";
-          currentColor=Colors.green;
+        current=data[1233]['Close'];
+        if(current==data[1233]['Close']){
+          flag=1;
         }
-        else {
-          currentSign="-";
-          currentColor=Colors.red;
-        }
-        low=data[1234]['Low'];
-        high=data[1234]['High'];
-        open=data[1234]['Open'];
-        previousClose=data[1233]['Close'];
-        D1=data[1234]['Close']-data[1233]['Close'];
+        low=data[1233]['Low'];
+        high=data[1233]['High'];
+        open=data[1233]['Open'];
+        previousClose=data[1232]['Close'];
+        D1=data[1233]['Close']-data[1232]['Close'];
         Dchange=(D1/current)*100;
-        M1=data[1234]['Close']-data[1203]['Close'];
+        M1=data[1233]['Close']-data[1202]['Close'];
         Mchange=(M1/current)*100;
         returns=M1;
         returnsChange=Mchange;
+        if(D1>0)
+        {
+          currentColor=Colors.green;
+        }
+        else {
+          currentColor=Colors.red;
+        }
         if(returns>0)
         {
           returnsColor=Colors.green;
         }
-        Y5=data[1234]['Close']-data[0]['Close'];
+        Y5=data[1233]['Close']-data[0]['Close'];
         Y5change=(Y5/current)*100;
-        Y1=data[1234]['Close']-data[870]['Close'];
+        Y1=data[1233]['Close']-data[870]['Close'];
         Y1change=(Y1/current)*100;
       });
     }catch(e){
@@ -132,273 +135,283 @@ class _BSEState extends State<BSE> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
-                child: Column(
-                    children:<Widget> [
-                      Row(
-                        children: [
-                          DropdownButton<String>(
-                            onChanged: (String? newValue){
-                              setState((){
-                                dropdownValueS=newValue!;
-                              });
-                              switch(newValue){
-                                case "BSE" :
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context)=> BSE()
-                                  ));
-                                  break;
-                                case "NSE":
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context)=> NSE()
-                                  ));
-                                  break;
-                                case "ASHOKLEYLAND" :
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context)=> AshokLey()
-                                  ));
-                                  break;
-                                case "CIPLA" :
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context)=> Cipla()
-                                  ));
-                                  break;
-                                case "EICHERMOTORS" :
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context)=> Eichermot()
-                                  ));
-                                  break;
-                                case "RELIANCE" :
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context)=> Reliance()
-                                  ));
-                                  break;
-                                case "TATASTEEL" :
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context)=> Tatasteel()
-                                  ));
-                                  break;
-                              }
-                            },
-                            value: dropdownValueS,
-                            items: itemsStocks.map<DropdownMenuItem<String>>(
-                                  (String value){
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
+    if(flag==1){
+      return SafeArea(
+          child: Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                      children:<Widget> [
+                        Row(
+                          children: [
+                            DropdownButton<String>(
+                              onChanged: (String? newValue){
+                                setState((){
+                                  dropdownValueS=newValue!;
+                                });
+                                switch(newValue){
+                                  case "BSE" :
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context)=> BSE()
+                                    ));
+                                    break;
+                                  case "NSE":
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context)=> NSE()
+                                    ));
+                                    break;
+                                  case "ASHOKLEYLAND" :
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context)=> AshokLey()
+                                    ));
+                                    break;
+                                  case "CIPLA" :
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context)=> Cipla()
+                                    ));
+                                    break;
+                                  case "EICHERMOTORS" :
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context)=> Eichermot()
+                                    ));
+                                    break;
+                                  case "RELIANCE" :
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context)=> Reliance()
+                                    ));
+                                    break;
+                                  case "TATASTEEL" :
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context)=> Tatasteel()
+                                    ));
+                                    break;
+                                }
                               },
-                            ).toList(),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text("BSE",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(current.toString(),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(currentSign+D1.toString(),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
-                          Text('('+Dchange.toString()+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text("As on 13 Feb, 2023",style: TextStyle(fontSize: 12,color: Colors.grey[500]))
-                        ],
-                      ),
-                      SizedBox(height: 20,),
-                      Row(
-                        children: [
-                          Text('Day Range',style: TextStyle(color: Colors.grey[600],fontSize: 18),)
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        children: [
-                          Text(low.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                          SizedBox(width: 160,),
-                          Text(high.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text('L',style: TextStyle(color: Colors.red,fontSize: 15),),
-                          // Slider(
-                          //   value: current,
-                          //   onChanged: null,
-                          //   min: low,
-                          //   max: high,
-                          //   activeColor: Colors.black,
-                          //   inactiveColor: Colors.black,
-                          //   thumbColor: Colors.black,
-                          // ),
-                          Text('H',style: TextStyle(color: Colors.green,fontSize: 15),)
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        children: [
-                          Text('52 week Range',style: TextStyle(color: Colors.grey[600],fontSize: 18),)
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        children: [
-                          Text(low52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                          SizedBox(width: 155,),
-                          Text(high52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text('L',style: TextStyle(color: Colors.red,fontSize: 15),),
-                          // Slider(
-                          //   value: current,
-                          //   onChanged: null,
-                          //   min: low52,
-                          //   max: high52,
-                          //   activeColor: Colors.black,
-                          //   inactiveColor: Colors.black,
-                          //   thumbColor: Colors.black,
-                          // ),
-                          Text('H',style: TextStyle(color: Colors.green,fontSize: 15),)
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          DropdownButton<String>(
-                            onChanged: (String? newValue){
-                              setState((){
-                                dropdownValueR=newValue!;
-                              });
-                              switch(newValue){
-                                case "1M" :
-                                  returns=M1;
-                                  returnsChange=Mchange;
-                                  if(M1>0)
-                                  {
-                                    returnsColor=Colors.green;
-                                  }
-                                  break;
-                                case "1Y":
-                                  returns=Y1;
-                                  returnsChange=Y1change;
-                                  if(Y1>0)
-                                  {
-                                    returnsColor=Colors.green;
-                                  }
-                                  break;
-                                case "5Y" :
-                                  returns=Y5;
-                                  returnsChange=Y5change;
-                                  if(Y5>0)
-                                  {
-                                    returnsColor=Colors.green;
-                                  }
-                                  break;
-                              }
-                            },
-                            value: dropdownValueR,
-                            items: itemsReturns.map<DropdownMenuItem<String>>(
-                                  (String value){
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              },
-                            ).toList(),
-                          ),
-                          Text(returns.toString()+'('+returnsChange.toString()+'%)',style: TextStyle(fontSize: 15,color: returnsColor),)
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text('Financials',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
-                        ],
-                      ),
-                      SizedBox(height: 5,),
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Open',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                              Text(open.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
-                              Text('Day Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                              Text(low.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Previous Close',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                              Text(previousClose.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
-                              Text('52 Week High',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                              Text(high52.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Day High',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                              Text(high.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
-                              Text('52 Week Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                              Text(low52.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SfCartesianChart(
-                        zoomPanBehavior: _zoomPanBehavior,
-                        tooltipBehavior: _tooltipBehavior,
-                        crosshairBehavior: _crosshairBehavior,
-                        axes: [
-                          NumericAxis(
-                              opposedPosition: true,
-                              name: 'indicator'
-                          )
-                        ],
-                        // indicators: <TechnicalIndicators<ChartData, DateTime?>>[
-                        //   AtrIndicator<ChartData, DateTime?>(
-                        //       seriesName: 'IBM', period: 3, yAxisName: 'indicator'),
-                        // ],
-                        series: <ChartSeries<ChartData, DateTime?>>[
-                          HiloOpenCloseSeries<ChartData, DateTime?>(
-                            enableTooltip: true,
-                            dataSource: chartData,
-                            xValueMapper: (ChartData sales, _) => sales.date,
-                            lowValueMapper: (ChartData sales, _) => sales.low,
-                            highValueMapper: (ChartData sales, _) => sales.high,
-                            openValueMapper: (ChartData sales, _) => sales.open,
-                            closeValueMapper: (ChartData sales, _) => sales.close,
-                            name: 'BSE',
-                          )
-                        ],
-                        primaryXAxis: DateTimeAxis(
-                          // minimum: DateTime(2018),
-                          // maximum: DateTime(2023)
+                              value: dropdownValueS,
+                              items: itemsStocks.map<DropdownMenuItem<String>>(
+                                    (String value){
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                },
+                              ).toList(),
+                            ),
+                          ],
                         ),
-                        // NumericAxis(
-                        //     edgeLabelPlacement: EdgeLabelPlacement.shift),
-                        primaryYAxis: NumericAxis(),
-                      ),
-                    ]
+                        Row(
+                          children: [
+                            Text("BSE",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(current.toString(),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(D1.toString().substring(0,D1.toString().indexOf('.')+2),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
+                            Text('('+Dchange.toString().substring(0,Dchange.toString().indexOf('.')+2)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("As on 13 Feb, 2023",style: TextStyle(fontSize: 12,color: Colors.grey[500]))
+                          ],
+                        ),
+                        SizedBox(height: 20,),
+                        Row(
+                          children: [
+                            Text('Day Range',style: TextStyle(color: Colors.grey[600],fontSize: 18),)
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Text(low.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            SizedBox(width: 160,),
+                            Text(high.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text('L',style: TextStyle(color: Colors.red,fontSize: 15),),
+                            Slider(
+                              value: current,
+                              onChanged: null,
+                              min: low*1.0,
+                              max: high*1.0,
+                              activeColor: Colors.black,
+                              inactiveColor: Colors.black,
+                              thumbColor: Colors.black,
+                            ),
+                            Text('H',style: TextStyle(color: Colors.green,fontSize: 15),)
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Text('52 week Range',style: TextStyle(color: Colors.grey[600],fontSize: 18),)
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Text(low52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            SizedBox(width: 155,),
+                            Text(high52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text('L',style: TextStyle(color: Colors.red,fontSize: 15),),
+                            Slider(
+                              value: current,
+                              onChanged: null,
+                              min: low52,
+                              max: high52,
+                              activeColor: Colors.black,
+                              inactiveColor: Colors.black,
+                              thumbColor: Colors.black,
+                            ),
+                            Text('H',style: TextStyle(color: Colors.green,fontSize: 15),)
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            DropdownButton<String>(
+                              onChanged: (String? newValue){
+                                setState((){
+                                  dropdownValueR=newValue!;
+                                });
+                                switch(newValue){
+                                  case "1M" :
+                                    returns=M1;
+                                    returnsChange=Mchange;
+                                    if(M1>0)
+                                    {
+                                      returnsColor=Colors.green;
+                                    }
+                                    break;
+                                  case "1Y":
+                                    returns=Y1;
+                                    returnsChange=Y1change;
+                                    if(Y1>0)
+                                    {
+                                      returnsColor=Colors.green;
+                                    }
+                                    break;
+                                  case "5Y" :
+                                    returns=Y5;
+                                    returnsChange=Y5change;
+                                    if(Y5>0)
+                                    {
+                                      returnsColor=Colors.green;
+                                    }
+                                    break;
+                                }
+                              },
+                              value: dropdownValueR,
+                              items: itemsReturns.map<DropdownMenuItem<String>>(
+                                    (String value){
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                },
+                              ).toList(),
+                            ),
+                            Text(returns.toString().substring(0,returns.toString().indexOf('.')+3)+'('+returnsChange.toString().substring(0,returnsChange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,color: returnsColor),)
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text('Financials',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                          ],
+                        ),
+                        SizedBox(height: 5,),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Open',style: TextStyle(fontSize: 15,color: Colors.grey)),
+                                Text(open.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text('Day Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
+                                Text(low.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Previous Close',style: TextStyle(fontSize: 15,color: Colors.grey)),
+                                Text(previousClose.toString().substring(0,previousClose.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text('52 Week High',style: TextStyle(fontSize: 15,color: Colors.grey)),
+                                Text(high52.toString().substring(0,high52.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Day High',style: TextStyle(fontSize: 15,color: Colors.grey)),
+                                Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text('52 Week Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
+                                Text(low52.toString().substring(0,low52.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SfCartesianChart(
+                          zoomPanBehavior: _zoomPanBehavior,
+                          tooltipBehavior: _tooltipBehavior,
+                          crosshairBehavior: _crosshairBehavior,
+                          axes: [
+                            NumericAxis(
+                                opposedPosition: true,
+                                name: 'indicator'
+                            )
+                          ],
+                          // indicators: <TechnicalIndicators<ChartData, DateTime?>>[
+                          //   AtrIndicator<ChartData, DateTime?>(
+                          //       seriesName: 'IBM', period: 3, yAxisName: 'indicator'),
+                          // ],
+                          series: <ChartSeries<ChartData, DateTime?>>[
+                            HiloOpenCloseSeries<ChartData, DateTime?>(
+                              enableTooltip: true,
+                              dataSource: chartData,
+                              xValueMapper: (ChartData sales, _) => sales.date,
+                              lowValueMapper: (ChartData sales, _) => sales.low,
+                              highValueMapper: (ChartData sales, _) => sales.high,
+                              openValueMapper: (ChartData sales, _) => sales.open,
+                              closeValueMapper: (ChartData sales, _) => sales.close,
+                              name: 'BSE',
+                            )
+                          ],
+                          primaryXAxis: DateTimeAxis(
+                            // minimum: DateTime(2018),
+                            // maximum: DateTime(2023)
+                          ),
+                          // NumericAxis(
+                          //     edgeLabelPlacement: EdgeLabelPlacement.shift),
+                          primaryYAxis: NumericAxis(),
+                        ),
+                      ]
+                  ),
                 ),
-              ),
-            )
-        )
-    );
+              )
+          )
+      );
+    }else{
+      return Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child:
+          CircularProgressIndicator(),
+        ),
+      );
+    }
   }
 }
 
