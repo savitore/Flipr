@@ -1,4 +1,5 @@
 import 'package:flipr/authentication/register.dart';
+import 'package:flipr/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -11,6 +12,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   var email="",password="";
   var formKey = GlobalKey<FormState>();
+  AuthService authService=AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +86,7 @@ class _LoginState extends State<Login> {
                           );
                         }
                         showLoaderDialog(context);
+                        authService.LoginWithEmailPassword(email, password, context);
                         //logic
                       }
                     },
