@@ -93,5 +93,5 @@ After '/' Use
 
 After '/' Use 
 
-* use sighnup for Sigh Up.
+* use signup for Sign Up.
 * use login for Login.
