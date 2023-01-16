@@ -91,11 +91,13 @@ class _BSEState extends State<BSE> {
           print(i);
           print(value.low);
           print(value.high);
-          if(low52>data[i]['Low']){
-            low52=data[i]['Low'];
-          }
-          if(high52<data[i]['High']){
-            high52=data[i]['High'];
+          if(value.low!=null&&value.high!=null){
+            if(low52>data[i]['Low']){
+              low52=data[i]['Low'];
+            }
+            if(high52<data[i]['High']){
+              high52=data[i]['High'];
+            }
           }
         }
         current=data[1233]['Close'];
@@ -230,9 +232,9 @@ class _BSEState extends State<BSE> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            Text(low.toString().substring(0,low.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),),
                             SizedBox(width: 140,),
-                            Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(high.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -340,7 +342,7 @@ class _BSEState extends State<BSE> {
                                 Text('Open',style: TextStyle(fontSize: 15,color: Colors.grey)),
                                 Text(open.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('Day Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(low.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(low.toString().substring(0,low.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(

@@ -93,7 +93,7 @@ class _NSEState extends State<NSE> {
           print(value.low);
           print(value.high);
           //Data same from 734 to 737 so no change will occur so better to exclude i=736 which is null
-          if(i!=736){
+          if(value.low!=null&&value.high!=null){
             if(low52>value.low){
               low52=value.low;
             }
