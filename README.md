@@ -75,4 +75,23 @@ The detailed of every feature can be viewed from the following link:
 [Android Application](https://drive.google.com/drive/u/0/folders/1r0JUilU1Xxhb2K3-fJ5L7VyiX9maBnxw)
 
 VIDEO IS ALSO ATTACHED WITH IT KINDLY WATCH IT!!
-    
+
+### Data API base URL
+[URL](https://dataapiservice.onrender.com/)
+After '/' Use 
+* Reliance for Reliance Data
+* Cipla for Cipla Data
+* TataSteel for TataSteel Data
+* AshokLey for AshokLey Data
+* EicherMotor for EicherMotors Data
+* NSE for NSE data
+* BSE for BSE data
+  
+### Authentication API URL
+
+[URL](https://authapi-bk7v.onrender.com/user/)
+
+After '/' Use 
+
+* use sighnup for Sigh Up.
+* use login for Login.
