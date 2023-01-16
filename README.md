@@ -7,6 +7,8 @@ Ashok Leyland, Cipla, Tata Steel, Eicher Motors)
 
 A Mobile appplication created to ease the process of figuiring out the stock data of Companies with a higher effeciency.
 
+####(The Main code is available in master branch)
+
 
 ### Features of the Application
 
@@ -26,15 +28,12 @@ A Mobile appplication created to ease the process of figuiring out the stock dat
 
 
 
-[Download Application Apk from here](https://drive.google.com/drive/u/0/folders/1GmmpBvUy5m4wy0AmUmKOeVHzd_PrG16D)
-
-
 ## Canva Presentation
 
 
 The detailed of every feature can be viewed from the following link:
 
-[Presentation Link for App](https://drive.google.com/file/d/1aLI2gA5H24E-qQ2-HYcUvYT3WSMB9Jt9/view?usp=sharing)
+[Presentation , LOGO , Video of working  Application](https://drive.google.com/drive/u/0/folders/1MbC_7W8qxTUirJlSr0KGldeBfPyRSRFs)
 
 
 ### TechStack and Libraries Used :
@@ -64,5 +63,9 @@ The detailed of every feature can be viewed from the following link:
         "start": "nodemon server.js"
 
 
- 
+ ### Dekstop Application
+
+[Desktop Application](https://drive.google.com/drive/u/0/folders/1O__LHLgrVbhLos2XO6z1Grzuy_WNpjpA)
+
+* Run flipr.exe for the Application.
     
