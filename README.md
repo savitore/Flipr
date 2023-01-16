@@ -11,15 +11,10 @@ A Mobile appplication created to ease the process of figuiring out the stock dat
 ### Features of the Application
 
 * User authentication wiht the help of API.
-* 
-* Can upload data for the house and other details of migration, etc.
-* Application Ui is complete
-* The server is storing all the data for the users and the required fields needed for Census
-* Census data is displayed within the user login section
-* Various charts are displayed for relevant data sets stored on the server.
-* The staff members can log in and perform a census for any user 
-* Staff Profile
-
+* Displays stock indexes (NSE BSE) of variosu companies.(Reliance Ashok Leyland, Cipla, Tata Steel, Eicher Motors).
+* Shows all data with graph values in application.
+* Shows NSE and BSE  rise and drop percent of 1 month , 1 year , 5 year.
+* Used MongoDb as a Database storage.
 
 
 
