@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flipr">
    <application
-        android:label="flipr"
+        android:label="SMI"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
