@@ -91,11 +91,13 @@ class _AshokLeyState extends State<AshokLey> {
           print(i);
           print(value.low);
           print(value.high);
-          if(low52>data[i]['Low']){
-            low52=data[i]['Low'];
-          }
-          if(high52<data[i]['High']){
-            high52=data[i]['High'];
+          if(value.low!=null&&value.high!=null){
+            if(low52>data[i]['Low']){
+              low52=data[i]['Low'];
+            }
+            if(high52<data[i]['High']){
+              high52=data[i]['High'];
+            }
           }
         }
         current=data[1233]['Close'];
@@ -230,9 +232,9 @@ class _AshokLeyState extends State<AshokLey> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                            SizedBox(width: 140,),
-                            Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(low.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            SizedBox(width: 120,),
+                            Text(high.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -260,8 +262,8 @@ class _AshokLeyState extends State<AshokLey> {
                         Row(
                           children: [
                             Text(low52.toString().substring(0,low52.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),),
-                            SizedBox(width: 130,),
-                            Text(high52.toString().substring(0,high52.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            SizedBox(width: 125,),
+                            Text(high52.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -341,16 +343,16 @@ class _AshokLeyState extends State<AshokLey> {
                                 Text('Open',style: TextStyle(fontSize: 15,color: Colors.grey)),
                                 Text(open.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('Day Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(low.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(low.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Previous Close',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(previousClose.toString().substring(0,previousClose.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(previousClose.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('52 Week High',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(high52.toString().substring(0,high52.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(high52.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(
@@ -362,6 +364,27 @@ class _AshokLeyState extends State<AshokLey> {
                                 Text(low52.toString().substring(0,low52.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
+                          ],
+                        ),
+
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Text('Chart',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text('1m ',style: TextStyle(color: Colors.black,fontSize: 16),),
+                            Text('3m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('5m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('15m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('30m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('1h ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('D ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('W ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Icon(Icons.keyboard_arrow_down,color: Colors.black,)
                           ],
                         ),
                         SfCartesianChart(

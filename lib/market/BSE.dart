@@ -365,6 +365,27 @@ class _BSEState extends State<BSE> {
                             ),
                           ],
                         ),
+
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Text('Chart',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text('1m ',style: TextStyle(color: Colors.black,fontSize: 16),),
+                            Text('3m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('5m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('15m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('30m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('1h ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('D ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('W ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Icon(Icons.keyboard_arrow_down,color: Colors.black,)
+                          ],
+                        ),
                         SfCartesianChart(
                           zoomPanBehavior: _zoomPanBehavior,
                           tooltipBehavior: _tooltipBehavior,

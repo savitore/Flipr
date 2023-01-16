@@ -86,7 +86,7 @@ class _NSEState extends State<NSE> {
       setState(() {
         low52=data[0]['Low'];
         high52=0.0;
-        for( var i=0; i<1200;i++){
+        for( var i=0; i<1234;i++){
           var value=ChartData(date: DateFormat("dd-MM-yyyy").parse(data[i]['Date']), open: data[i]['Open'], high: data[i]['High'], low: data[i]['Low'], close: data[i]['Close']);
           chartData.add(value);
           print(i);
@@ -212,13 +212,13 @@ class _NSEState extends State<NSE> {
                         ),
                         Row(
                           children: [
-                            Text(current.toString(),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
+                            Text(current.toStringAsFixed(2),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
                           ],
                         ),
                         Row(
                           children: [
-                            Text(D1.toString().substring(0,D1.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
-                            Text('('+Dchange.toString().substring(0,Dchange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
+                            Text(D1.toStringAsFixed(2),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
+                            Text('('+Dchange.toStringAsFixed(2)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
                           ],
                         ),
                         Row(
@@ -235,9 +235,9 @@ class _NSEState extends State<NSE> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            Text(low.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),),
                             SizedBox(width: 160,),
-                            Text(high.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(high.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -264,9 +264,9 @@ class _NSEState extends State<NSE> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            Text(low52.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),),
                             SizedBox(width: 155,),
-                            Text(high52.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(high52.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -328,7 +328,7 @@ class _NSEState extends State<NSE> {
                                 },
                               ).toList(),
                             ),
-                            Text(returns.toString()+'('+returnsChange.toString().substring(0,returnsChange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,color: returnsColor),)
+                            Text(returns.toStringAsFixed(2)+'('+returnsChange.toStringAsFixed(2)+'%)',style: TextStyle(fontSize: 15,color: returnsColor),)
                           ],
                         ),
                         Row(
@@ -343,29 +343,50 @@ class _NSEState extends State<NSE> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Open',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(open.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(open.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('Day Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(low.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(low.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Previous Close',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(previousClose.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(previousClose.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('52 Week High',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(high52.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(high52.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Day High',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(high.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(high.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('52 Week Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(low52.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(low52.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
+                          ],
+                        ),
+
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Text('Chart',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text('1m ',style: TextStyle(color: Colors.black,fontSize: 16),),
+                            Text('3m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('5m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('15m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('30m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('1h ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('D ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('W ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Icon(Icons.keyboard_arrow_down,color: Colors.black,)
                           ],
                         ),
                         SfCartesianChart(

@@ -1,7 +1,6 @@
 import 'dart:convert';
-
-import 'package:flipr/authentication/login.dart';
 import 'package:flipr/market/NSE.dart';
+import 'package:flipr/stocks/Tatasteel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -40,7 +39,7 @@ class AuthService{
         //Go to login
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => NSE()),
+            MaterialPageRoute(builder: (context) => Tatasteel()),
                 (route) => false);
       }
       if(error!='null'){

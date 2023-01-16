@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flipr/stocks/Ashokley.dart';
+import 'package:flipr/stocks/Eichermot.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +9,6 @@ import 'package:http/http.dart' as http;
 import '../market/BSE.dart';
 import '../market/NSE.dart';
 import '../stocks/Cipla.dart';
-import '../stocks/Eichermot.dart';
 import '../stocks/Tatasteel.dart';
 
 class Reliance extends StatefulWidget {
@@ -91,11 +91,13 @@ class _RelianceState extends State<Reliance> {
           print(i);
           print(value.low);
           print(value.high);
-          if(low52>data[i]['Low']){
-            low52=data[i]['Low'];
-          }
-          if(high52<data[i]['High']){
-            high52=data[i]['High'];
+          if(value.low!=null&&value.high!=null){
+            if(low52>data[i]['Low']){
+              low52=data[i]['Low'];
+            }
+            if(high52<data[i]['High']){
+              high52=data[i]['High'];
+            }
           }
         }
         current=data[1233]['Close'];
@@ -207,13 +209,13 @@ class _RelianceState extends State<Reliance> {
                         ),
                         Row(
                           children: [
-                            Text(current.toString().substring(0,current.toString().indexOf('.')+3),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
+                            Text(current.toStringAsFixed(2),style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold))
                           ],
                         ),
                         Row(
                           children: [
-                            Text(D1.toString().substring(0,D1.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
-                            Text('('+Dchange.toString().substring(0,Dchange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
+                            Text(D1.toStringAsFixed(2),style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor)),
+                            Text('('+Dchange.toStringAsFixed(2)+'%)',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: currentColor))
                           ],
                         ),
                         Row(
@@ -230,9 +232,9 @@ class _RelianceState extends State<Reliance> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low.toString().substring(0,low.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),),
-                            SizedBox(width: 105),
-                            Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(low.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            SizedBox(width: 105,),
+                            Text(high.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -259,9 +261,9 @@ class _RelianceState extends State<Reliance> {
                         SizedBox(height: 10,),
                         Row(
                           children: [
-                            Text(low52.toString().substring(0,low52.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            Text(low52.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),),
                             SizedBox(width: 110,),
-                            Text(high52.toString().substring(0,high52.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            Text(high52.toStringAsFixed(2),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -324,7 +326,7 @@ class _RelianceState extends State<Reliance> {
                               ).toList(),
                             ),
                             SizedBox(width: 5,),
-                            Text(returns.toString().substring(0,returns.toString().indexOf('.')+3)+'('+returnsChange.toString().substring(0,returnsChange.toString().indexOf('.')+3)+'%)',style: TextStyle(fontSize: 15,color: returnsColor),)
+                            Text(returns.toStringAsFixed(2)+'('+returnsChange.toStringAsFixed(2)+'%)',style: TextStyle(fontSize: 15,color: returnsColor),)
                           ],
                         ),
                         Row(
@@ -339,29 +341,49 @@ class _RelianceState extends State<Reliance> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Open',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(open.toString().substring(0,open.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(open.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('Day Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(low.toString().substring(0,low.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(low.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Previous Close',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(previousClose.toString().substring(0,previousClose.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(previousClose.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('52 Week High',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(high52.toString().substring(0,high52.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(high52.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Day High',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(high.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('52 Week Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(low52.toString().substring(0,low52.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(low52.toStringAsFixed(2),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Text('Chart',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text('1m ',style: TextStyle(color: Colors.black,fontSize: 16),),
+                            Text('3m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('5m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('15m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('30m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('1h ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('D ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('W ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Icon(Icons.keyboard_arrow_down,color: Colors.black,)
                           ],
                         ),
                         SfCartesianChart(

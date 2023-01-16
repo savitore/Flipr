@@ -91,11 +91,13 @@ class _CiplaState extends State<Cipla> {
           print(i);
           print(value.low);
           print(value.high);
-          if(low52>data[i]['Low']){
-            low52=data[i]['Low'];
-          }
-          if(high52<data[i]['High']){
-            high52=data[i]['High'];
+          if(value.low!=null&&value.high!=null){
+            if(low52>data[i]['Low']){
+              low52=data[i]['Low'];
+            }
+            if(high52<data[i]['High']){
+              high52=data[i]['High'];
+            }
           }
         }
         current=data[1233]['Close'];
@@ -231,8 +233,8 @@ class _CiplaState extends State<Cipla> {
                         Row(
                           children: [
                             Text(low.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
-                            SizedBox(width: 130,),
-                            Text(high.toString(),style: TextStyle(color: Colors.black,fontSize: 15),)
+                            SizedBox(width: 125,),
+                            Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(color: Colors.black,fontSize: 15),)
                           ],
                         ),
                         Row(
@@ -357,11 +359,32 @@ class _CiplaState extends State<Cipla> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('Day High',style: TextStyle(fontSize: 15,color: Colors.grey)),
-                                Text(high.toString(),style: TextStyle(fontSize: 15,color: Colors.black)),
+                                Text(high.toString().substring(0,high.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
                                 Text('52 Week Low',style: TextStyle(fontSize: 15,color: Colors.grey)),
                                 Text(low52.toString().substring(0,low52.toString().indexOf('.')+3),style: TextStyle(fontSize: 15,color: Colors.black)),
                               ],
                             ),
+                          ],
+                        ),
+
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Text('Chart',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text('1m ',style: TextStyle(color: Colors.black,fontSize: 16),),
+                            Text('3m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('5m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('15m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('30m ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('1h ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('D ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Text('W ',style: TextStyle(color: Colors.black,fontSize: 16)),
+                            Icon(Icons.keyboard_arrow_down,color: Colors.black,)
                           ],
                         ),
                         SfCartesianChart(
